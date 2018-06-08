@@ -448,13 +448,25 @@ namespace AvaStore.BL
         /// <returns>Return all products in a list.</returns>
         public IEnumerable<Product> GetAllProducts(Store store)
         {
-            IEnumerable<Product> list;
-            
-            list = store.Products.Pendrives;
-            
-            list = store.Products.Phones;
-            
-            list = store.Products.Phones;
+            List<Product> list = new List<Product>();
+
+            if (store.Products != null)
+            {
+                if (store.Products.Pendrives != null)
+                {
+                    list.AddRange(store.Products.Pendrives);
+                }
+
+                if (store.Products.Phones != null)
+                {
+                    list.AddRange(store.Products.Phones);
+                }
+
+                if (store.Products.Refrigerators != null)
+                {
+                    list.AddRange(store.Products.Phones);
+                }
+            }
             
             return list;
         }

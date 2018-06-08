@@ -38,6 +38,8 @@ namespace AvaStore.UI
 
             ShowAllProductsTest();
 
+            GetAllProductsTest();
+
             Console.ReadLine();
 
         }
@@ -224,6 +226,9 @@ namespace AvaStore.UI
 
         }
 
+        /// <summary>
+        /// Test of the ShowAllProductsTest function.
+        /// </summary>
         static public void ShowAllProductsTest()
         {
             StoreBL storeBL = new StoreBL();
@@ -270,6 +275,54 @@ namespace AvaStore.UI
             Console.WriteLine(storeBL.ShowAllProducts(store));
         }
 
+        /// <summary>
+        /// Test of the GetAllProductsTest function.
+        /// </summary>
+        static public void GetAllProductsTest()
+        {
+            StoreBL storeBL = new StoreBL();
+            Store store = new Store();
+
+            PenDrive pen1 = new PenDrive();
+            pen1.Memory = 500;
+            pen1.Model = "Kingston";
+            pen1.Price = 20;
+
+            PenDrive pen2 = new PenDrive();
+            pen2.Memory = 300;
+            pen2.Model = "HP";
+            pen2.Price = 17;
+
+            Phone pho1 = new Phone();
+            pho1.Inches = 30;
+            pho1.Model = "HP";
+            pho1.Price = 17;
+
+            Phone pho2 = new Phone();
+            pho2.Inches = 30;
+            pho2.Model = "HP";
+            pho2.Price = 17;
+
+            Refrigerator ref1 = new Refrigerator();
+            ref1.Brand = "Samsung";
+            ref1.Capacity = 50;
+            ref1.Price = 430;
+
+            Refrigerator ref2 = new Refrigerator();
+            ref2.Brand = "Fujitsu";
+            ref2.Capacity = 100;
+            ref2.Price = 600;
+
+            store.Products.Pendrives.Add(pen1);
+            store.Products.Pendrives.Add(pen2);
+            store.Products.Phones.Add(pho1);
+            store.Products.Phones.Add(pho1);
+            store.Products.Refrigerators.Add(ref1);
+            store.Products.Refrigerators.Add(ref2);
+
+
+            Console.WriteLine(storeBL.GetAllProducts(store));
+        }
 
 
     }
