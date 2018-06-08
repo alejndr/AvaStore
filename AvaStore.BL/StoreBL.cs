@@ -1,4 +1,5 @@
-﻿using AvaStore.Models;
+﻿using AvaStore.BL.Interfaces;
+using AvaStore.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 namespace AvaStore.BL
 {
 
-    public class StoreBL
+    public class StoreBL : IStoreBL
     {
         // TODO: 11. This class must implement the IStore interface (Interfaces.IStoreBL).
         //           Methods must be implemented by priority:
@@ -75,6 +76,7 @@ namespace AvaStore.BL
             return exists;
         }
 
+
         /// <summary>
         /// Validate if a pen drive exists in the store (in order to brand and model).
         /// </summary>
@@ -102,7 +104,6 @@ namespace AvaStore.BL
             return exists;
         }
 
-        
 
         /// <summary>
         /// Calculate total price of the items. 
@@ -118,8 +119,7 @@ namespace AvaStore.BL
         {
             bool calculated = false;
             total = 0;
-
-
+            
             if (store != null)
             {
                 if (store.Products.Pendrives == penDrives)
@@ -136,24 +136,13 @@ namespace AvaStore.BL
                     {
                         total = null;
                     }
-
-
-                    //while (!nullPrice)
-                    //{
-                    //    if (penDrives[count].Price.HasValue || penDrives.Count < count)
-                    //    {
-                    //        total += penDrives[count].Price;
-                    //        count++;
-                    //    }
-                    //    else
-                    //    {
-                    //        nullPrice = true;
-                    //    }
+                    
                 }
             }
 
             return calculated;
         }
+
 
         /// <summary>
         /// Calculate total price of the items. 
@@ -165,12 +154,11 @@ namespace AvaStore.BL
         /// <param name="phones">Phone list.</param>
         /// <param name="total">Total price of the items.</param>
         /// <returns>True if total price can be calculated.</returns>
-        bool CalculateTotalPrice(Store store, List<Phone> phones, out decimal? total)
+        public bool CalculateTotalPrice(Store store, List<Phone> phones, out decimal? total)
         {
             bool calculated = false;
             total = 0;
-
-
+            
             if (store != null)
             {
                 if (store.Products.Phones == phones)
@@ -194,6 +182,7 @@ namespace AvaStore.BL
             return calculated;
         }
         
+
         /// <summary>
         /// Calculate total price of the items. 
         /// </summary>
@@ -204,12 +193,11 @@ namespace AvaStore.BL
         /// <param name="refrigerators">Refrigerators list.</param>
         /// <param name="total">Total price of the items.</param>
         /// <returns>True if total price can be calculated.</returns>
-        bool CalculateTotalPrice(Store store, List<Refrigerator> refrigerators, out decimal? total)
+        public bool CalculateTotalPrice(Store store, List<Refrigerator> refrigerators, out decimal? total)
         {
             bool calculated = false;
             total = 0;
-
-
+            
             if (store != null)
             {
                 if (store.Products.Refrigerators == refrigerators)
@@ -232,6 +220,7 @@ namespace AvaStore.BL
 
             return calculated;
         }
+
 
         /// <summary>
         /// Calculate total price of the items. 
@@ -267,6 +256,7 @@ namespace AvaStore.BL
             return calculated;
         }
         
+
         /// <summary>
         /// Calculate total price of the items. 
         /// </summary>
@@ -294,15 +284,10 @@ namespace AvaStore.BL
             {
                 total = null;
             }
-
-
-
-
+            
             return calculated;
         }
-
-
-
+        
 
         /// <summary>
         /// Show all products.
@@ -461,12 +446,16 @@ namespace AvaStore.BL
         /// </summary>
         /// <param name="store">Store.</param>
         /// <returns>Return all products in a list.</returns>
-        IEnumerable<Product> GetAllProducts(Store store)
+        public IEnumerable<Product> GetAllProducts(Store store)
         {
             IEnumerable<Product> list;
-
-            list.ToList
-
+            
+            list = store.Products.Pendrives;
+            
+            list = store.Products.Phones;
+            
+            list = store.Products.Phones;
+            
             return list;
         }
     }
